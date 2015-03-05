@@ -17,6 +17,7 @@ curl http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%20Build%203065.dmg > ~/tm
 sudo hdiutil attach ~/tmp/ST3.dmg
 sudo cp -r /Volumes/Sublime\ Text/Sublime\ Text.app/ /Applications/Sublime\ Text.app
 sudo diskutil unmount Sublime\ Text
+sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /bin
 echo $'Done\n'
 
 echo "Installing Sublime Text 3 Package Control"
@@ -31,6 +32,13 @@ git clone $PREFERENCES_GIT_REPO ~/dotfiles
 echo "Preparing and running setup script"
 sh ~/dotfiles/.scripts/setup.sh
 echo $'Done\n'
+
+echo "Adding items to dock"
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Sublime Text.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/iTerm.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+echo "Restarting the dock"
+killall Dock
+echo $'Done...\n'
 
 echo "Deleting tmp folder"
 rm -r ~/tmp
