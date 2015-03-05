@@ -1,6 +1,6 @@
 # UW Computer Setup
 
-Script to automatically install and setup up software on UW Computers running Mac OS X.
+A script to automatically install and setup up software on UW Computers running Mac OS X.
 
 ## Usage
 
