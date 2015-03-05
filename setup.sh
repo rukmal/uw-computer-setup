@@ -7,14 +7,14 @@ echo $'Done\n'
 
 echo "Downloading and installing iTerm2"
 curl https://iterm2.com/downloads/stable/iTerm2_v2_0.zip > ~/tmp/iTerm2_v2_0.zip
-open ~/tmp/iTerm2_v2_0.zip
+unzip ~/tmp/iTerm2_v2_0.zip -d ~/tmp
 sudo mv ~/tmp/iTerm.app /Applications
 echo $'Done\n'
 
 echo "Downloading and installing Sublime Text 3"
 curl http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%20Build%203065.dmg > ~/tmp/ST3.dmg
 sudo hdiutil attach ~/tmp/ST3.dmg
-sudo cp -r /Volumes/Sublime\ Text/Sublime\ Text.app/ /Applications/
+sudo cp -r /Volumes/Sublime\ Text/Sublime\ Text.app/ /Applications/Sublime\ Text.app
 sudo diskutil unmount Sublime\ Text
 echo $'Done\n'
 
