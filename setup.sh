@@ -27,12 +27,6 @@ mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
 mv ~/tmp/Package\ Control.sublime-package ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/
 echo $'Done\n'
 
-echo "Downloading and installing Spotify"
-curl $SPOTIFY_DOWNLOAD_URL > ~/tmp/Spotify.zip
-unzip ~/tmp/Spotify.zip -d ~/tmp
-# Used open instead of running install script directly to use gui installer
-open ~/tmp/Install\ Spotify.app
-
 echo "Cloning dotfile configuration"
 git clone $PREFERENCES_GIT_REPO ~/dotfiles
 echo "Preparing and running setup script"
@@ -44,6 +38,12 @@ echo "Installing tig"
 git clone $TIG_GIT_URL ~/tmp/tig
 cd ~/tmp/tig
 sudo make install prefix=/
+
+echo "Downloading and installing Spotify"
+curl $SPOTIFY_DOWNLOAD_URL > ~/tmp/Spotify.zip
+unzip ~/tmp/Spotify.zip -d ~/tmp
+# Used open instead of running install script directly to use gui installer
+open ~/tmp/Install\ Spotify.app
 
 echo "Deleting tmp folder"
 sudo rm -fr ~/tmp
@@ -63,4 +63,5 @@ curl $WALLPAPER_URL > ~/.wallpaper/bg
 osascript -e 'tell application "Finder" to set desktop picture to "/Users/'$UW_NET_ID'/.wallpaper/bg" as POSIX file'
 
 echo "All operations completed successfully."
+sudo rm -fr ~/uw-computer-setup
 killall Terminal
