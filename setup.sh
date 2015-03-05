@@ -1,5 +1,6 @@
 # Getting config vars
-source ./config
+CURRENT_DIR=$(dirname $BASH_SOURCE)
+source $CURRENT_DIR/config
 
 echo "Creating tmp directory"
 mkdir ~/tmp
@@ -21,6 +22,7 @@ echo $'Done\n'
 echo "Installing Sublime Text 3 Package Control"
 curl https://packagecontrol.io/Package%20Control.sublime-package > ~/tmp/Package\ Control.sublime-package
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/
+mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
 mv ~/tmp/Package\ Control.sublime-package ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/
 echo $'Done\n'
 
