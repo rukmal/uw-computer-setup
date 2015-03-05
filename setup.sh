@@ -20,6 +20,7 @@ echo $'Done\n'
 
 echo "Installing Sublime Text 3 Package Control"
 curl https://packagecontrol.io/Package%20Control.sublime-package > ~/tmp/Package\ Control.sublime-package
+mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/
 mv ~/tmp/Package\ Control.sublime-package ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/
 echo $'Done\n'
 
