@@ -27,7 +27,7 @@ mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
 mv ~/tmp/Package\ Control.sublime-package ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/
 echo $'Done\n'
 
-echo "Installing Spotify"
+echo "Downloading and installing Spotify"
 curl $SPOTIFY_DOWNLOAD_URL > ~/tmp/Spotify.zip
 unzip ~/tmp/Spotify.zip -d ~/tmp
 # Used open instead of running install script directly to use gui installer
@@ -56,6 +56,11 @@ defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</
 echo "Restarting the dock"
 killall Dock
 echo $'Done...\n'
+
+echo "Changing desktop background"
+mkdir ~/.wallpaper
+curl $WALLPAPER_URL > ~/.wallpaper/bg
+osascript -e 'tell application "Finder" to set desktop picture to "/Users/'$UW_NET_ID'/.wallpaper/bg" as POSIX file'
 
 echo "All operations completed successfully."
 killall Terminal
