@@ -7,13 +7,13 @@ mkdir ~/tmp
 echo $'Done\n'
 
 echo "Downloading and installing iTerm2"
-curl https://iterm2.com/downloads/stable/iTerm2_v2_0.zip > ~/tmp/iTerm2_v2_0.zip
+curl $ITERM2_DOWNLOAD_URL > ~/tmp/iTerm2_v2_0.zip
 unzip ~/tmp/iTerm2_v2_0.zip -d ~/tmp
 sudo mv ~/tmp/iTerm.app /Applications
 echo $'Done\n'
 
 echo "Downloading and installing Sublime Text 3"
-curl http://c758482.r82.cf2.rackcdn.com/Sublime%20Text%20Build%203065.dmg > ~/tmp/ST3.dmg
+curl $ST3_DOWNLOAD_URL > ~/tmp/ST3.dmg
 sudo hdiutil attach ~/tmp/ST3.dmg
 sudo cp -r /Volumes/Sublime\ Text/Sublime\ Text.app/ /Applications/Sublime\ Text.app
 sudo diskutil unmount Sublime\ Text
@@ -21,7 +21,7 @@ sudo ln -s /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /bin
 echo $'Done\n'
 
 echo "Installing Sublime Text 3 Package Control"
-curl https://packagecontrol.io/Package%20Control.sublime-package > ~/tmp/Package\ Control.sublime-package
+curl $ST3_PACKAGE_CONTROL_URL > ~/tmp/Package\ Control.sublime-package
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/
 mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
 mv ~/tmp/Package\ Control.sublime-package ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/
@@ -33,6 +33,16 @@ echo "Preparing and running setup script"
 sh ~/dotfiles/.scripts/setup.sh
 echo $'Done\n'
 
+echo "Installing other tools:"
+echo "Installing tig"
+git clone $TIG_GIT_URL ~/tmp/tig
+cd ~/tmp/tig
+sudo make install prefix=/
+
+echo "Deleting tmp folder"
+sudo rm -fr ~/tmp
+echo $'Done...\n'
+
 echo "Adding items to dock"
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Sublime Text.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/iTerm.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
@@ -40,8 +50,5 @@ echo "Restarting the dock"
 killall Dock
 echo $'Done...\n'
 
-echo "Deleting tmp folder"
-rm -r ~/tmp
-echo $'Done...\n'
-
 echo "All operations completed successfully."
+killall Terminal
