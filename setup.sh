@@ -27,12 +27,6 @@ mkdir -p ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/
 mv ~/tmp/Package\ Control.sublime-package ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/
 echo $'Done\n'
 
-echo "Cloning dotfile configuration"
-git clone $PREFERENCES_GIT_REPO ~/dotfiles
-echo "Preparing and running setup script"
-sh ~/dotfiles/.scripts/setup.sh
-echo $'Done\n'
-
 echo "Installing other tools:"
 echo "Installing tig"
 git clone $TIG_GIT_URL ~/tmp/tig
@@ -45,17 +39,25 @@ unzip ~/tmp/Spotify.zip -d ~/tmp
 # Used open instead of running install script directly to use gui installer
 open ~/tmp/Install\ Spotify.app
 
-echo "Deleting tmp folder"
-sudo rm -fr ~/tmp
-echo $'Done...\n'
+echo "Cloning dotfile configuration"
+git clone $PREFERENCES_GIT_REPO ~/dotfiles
+echo "Preparing and running setup script"
+sh ~/dotfiles/.scripts/setup.sh
+echo $'Done\n'
 
 echo "Adding items to dock"
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Sublime Text.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/iTerm.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
 defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/Spotify.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+echo $'Done\n'
+
+echo "Deleting tmp folder"
+sudo rm -fr ~/tmp
+echo $'Done\n'
+
 echo "Restarting the dock"
 killall Dock
-echo $'Done...\n'
+echo $'Done\n'
 
 echo "Changing desktop background"
 mkdir ~/.wallpaper
