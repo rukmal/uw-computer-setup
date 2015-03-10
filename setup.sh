@@ -37,7 +37,7 @@ echo "Downloading and installing Spotify"
 curl $SPOTIFY_DOWNLOAD_URL > ~/tmp/Spotify.zip
 unzip ~/tmp/Spotify.zip -d ~/tmp
 # Used open instead of running install script directly to use gui installer
-sh ~/tmp/Install\ Spotify.app/Contents/MacOS/Install\ Spotify
+exec ~/tmp/Install\ Spotify.app/Contents/MacOS/Install\ Spotify
 
 echo "Cloning dotfile configuration"
 git clone $PREFERENCES_GIT_REPO ~/dotfiles
