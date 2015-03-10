@@ -49,9 +49,9 @@ echo "Downloading and installing Spotify"
 curl $SPOTIFY_DOWNLOAD_URL > ~/tmp/Spotify.zip
 unzip ~/tmp/Spotify.zip -d ~/tmp
 # Used install script instead of open to make everything else halt until this is finished
+osascript -e 'tell application "System Events" to keystroke "f" using {command down, control down}'
 sudo ~/tmp/Install\ Spotify.app/Contents/MacOS/Install\ Spotify 2> /dev/null
 killall Spotify
-osascript -e 'tell application "Terminal" to activate'
 
 echo "Cloning dotfile configuration"
 git clone $PREFERENCES_GIT_REPO ~/dotfiles
@@ -76,9 +76,8 @@ echo $'Done\n'
 echo "Changing desktop background"
 mkdir ~/.wallpaper
 curl $WALLPAPER_URL > ~/.wallpaper/bg
-osascript -e 'tell application "Finder" to activate'
-sudo rm -fr ~/uw-computer-setup
-
-echo "All operations completed successfully."
 osascript -e 'tell application "Finder" to set desktop picture to "/Users/'$UW_NET_ID'/.wallpaper/bg" as POSIX file'
+
+sudo rm -fr ~/uw-computer-setup
+echo "All operations completed successfully."
 killall Terminal
