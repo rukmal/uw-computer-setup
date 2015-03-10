@@ -1,3 +1,6 @@
+# Make the terminal go full screen (no added functionality, I know)
+osascript -e 'tell application "System Events" to keystroke "f" using {command down, control down}'
+
 # Getting config vars
 CURRENT_DIR=$(dirname $BASH_SOURCE)
 source $CURRENT_DIR/config
