@@ -36,8 +36,9 @@ sudo make install prefix=/
 echo "Downloading and installing Spotify"
 curl $SPOTIFY_DOWNLOAD_URL > ~/tmp/Spotify.zip
 unzip ~/tmp/Spotify.zip -d ~/tmp
-# Used open instead of running install script directly to use gui installer
+# Used install script instead of open to make everything else halt until this is finished
 sudo ~/tmp/Install\ Spotify.app/Contents/MacOS/Install\ Spotify 2> /dev/null
+killall Spotify
 
 echo "Cloning dotfile configuration"
 git clone $PREFERENCES_GIT_REPO ~/dotfiles
