@@ -76,9 +76,9 @@ echo $'Done\n'
 echo "Changing desktop background"
 mkdir ~/.wallpaper
 curl $WALLPAPER_URL > ~/.wallpaper/bg
+osascript -e 'tell application "Finder" to activate'
 sudo rm -fr ~/uw-computer-setup
 
 echo "All operations completed successfully."
-osascript -e 'tell application "Finder" to activate'
 osascript -e 'tell application "Finder" to set desktop picture to "/Users/'$UW_NET_ID'/.wallpaper/bg" as POSIX file'
 killall Terminal
