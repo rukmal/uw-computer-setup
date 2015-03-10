@@ -28,10 +28,19 @@ mv ~/tmp/Package\ Control.sublime-package ~/Library/Application\ Support/Sublime
 echo $'Done\n'
 
 echo "Installing other tools:"
+
 echo "Installing tig"
 git clone $TIG_GIT_URL ~/tmp/tig
 cd ~/tmp/tig
 sudo make install prefix=/
+
+echo "Installing Node.js"
+curl $NODEJS_DOWNLOAD_URL > ~/tmp/nodejs.tar.gz
+mkdir ~/tmp/nodejs
+tar -zxvf ~/tmp/nodejs.tar.gz -C ~/tmp/nodejs --strip-components=1
+sudo mv ~/tmp/nodejs /usr/local
+sudo ln -s /usr/local/nodejs/bin/* /bin
+echo $'Done\n'
 
 echo "Downloading and installing Spotify"
 curl $SPOTIFY_DOWNLOAD_URL > ~/tmp/Spotify.zip
