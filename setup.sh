@@ -51,6 +51,7 @@ unzip ~/tmp/Spotify.zip -d ~/tmp
 # Used install script instead of open to make everything else halt until this is finished
 sudo ~/tmp/Install\ Spotify.app/Contents/MacOS/Install\ Spotify 2> /dev/null
 killall Spotify
+osascript -e 'tell application "Terminal" to activate'
 
 echo "Cloning dotfile configuration"
 git clone $PREFERENCES_GIT_REPO ~/dotfiles
