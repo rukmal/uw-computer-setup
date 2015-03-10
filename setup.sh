@@ -52,7 +52,7 @@ defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</
 echo $'Done\n'
 
 echo "Deleting tmp folder"
-sudo rm -fr ~/tmp
+#sudo rm -fr ~/tmp
 echo $'Done\n'
 
 echo "Restarting the dock"
@@ -65,5 +65,5 @@ curl $WALLPAPER_URL > ~/.wallpaper/bg
 osascript -e 'tell application "Finder" to set desktop picture to "/Users/'$UW_NET_ID'/.wallpaper/bg" as POSIX file'
 
 echo "All operations completed successfully."
-sudo rm -fr ~/uw-computer-setup
-killall Terminal
+#sudo rm -fr ~/uw-computer-setup
+#killall Terminal
